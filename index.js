@@ -8,12 +8,6 @@ const app = express();
 app.use(express.json());
 
 
-
-app.get("/", async (req, res) =>
-         {
-       res.send("My fs explorer")
-})
-
 app.post("/files", async (req, res) => { 
 let dateobj = new Date()
 let date = dateobj.getFullYear() +"-"+ dateobj.getMonth() +"-"+ dateobj.getDate()
