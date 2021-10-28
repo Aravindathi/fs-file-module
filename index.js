@@ -7,10 +7,7 @@ const PORT = 3001;
 const app = express();
 app.use(express.json());
 
-app.get("/", async (req, res) => { 
-    console.log("Welcome to file explorer")
-    res.send("Welcome to file explorer")
- }
+
 app.post("/files", async (req, res) => { 
 let dateobj = new Date()
 let date = dateobj.getFullYear() +"-"+ dateobj.getMonth() +"-"+ dateobj.getDate()
