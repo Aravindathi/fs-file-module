@@ -7,6 +7,10 @@ const PORT = 3001;
 const app = express();
 app.use(express.json());
 
+app.post("/files", async (req, res) =>
+         {
+       res.redirect("/files")
+}
 
 app.post("/files", async (req, res) => { 
 let dateobj = new Date()
