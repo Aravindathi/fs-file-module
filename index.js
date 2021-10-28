@@ -2,16 +2,21 @@ import express from "express";
 import fs from "fs"
 import path from "path";
 
-const PORT = 3001;
+const PORT = 3002;
 
 const app = express();
 app.use(express.json());
 
+app.get("/", async (req, res) => { 
+    res.send("hi..")
+})
 
-app.post("/files", async (req, res) => { 
+
+app.post("/", async (req, res) => { 
 let dateobj = new Date()
-let date = dateobj.getFullYear() +"-"+ dateobj.getMonth() +"-"+ dateobj.getDate()
+
 let time = dateobj.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' })
+let date = dateobj.getFullYear() +"-"+ dateobj.getMonth() +"-"+ dateobj.getDate() +"-"+dateobj.getMinutes() +"-"+ dateobj.getSeconds()
 console.log(date)
 
 fs.writeFile(`./test/${date}.txt`, time, function (err) {
@@ -21,7 +26,7 @@ fs.writeFile(`./test/${date}.txt`, time, function (err) {
     res.send("File created")
 });
 
-app.get("/files", async (req, res) => { 
+app.get("/", async (req, res) => { 
 fs.readdir("./test", function (err, files) {
     //handling error
     if (err) {
@@ -29,8 +34,10 @@ fs.readdir("./test", function (err, files) {
     } 
 
     files.forEach(function (file) {
-        console.log(file); 
+        console.log(file) 
+    
     });
+    console.log(files)
     res.send(files)
 });
 })
